@@ -30,6 +30,14 @@ public class Participante{
 		this.cinta = cinta;
 	}
 
+	/** 
+	 * Metodo que calcula el indice de victorias del Participante
+	 * @return numero Real que representa el indice de victorias
+	*/
+	public double indiceDeVictorias(){	
+		return this.getNumMedallas() / this.getNumTorneos();
+	}
+
 	// Getters
 
 	/** 
