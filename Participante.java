@@ -1,3 +1,13 @@
+/**
+ * Clase {@code Participantes}
+ * 
+ * @author Luis Fernando Quintana López
+ * @author Erick Xavier Martinez Briones
+ * @version 1.0.0
+ * @since 2026
+ * 
+ */
+
 public class Participante{
 	/*numero de medallas conseguidas por el participante*/
 	int numMedallas;
