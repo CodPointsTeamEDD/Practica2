@@ -1,3 +1,13 @@
+/**
+ * Clase {@code AdivinadorResultadps}
+ * 
+ * @author Luis Fernando Quintana López
+ * @author Erick Xavier Martinez Briones
+ * @version 1.0.0
+ * @since 2026
+ * 
+ */
+
 
 public class AdivinadorResultados {
 
@@ -164,6 +174,7 @@ public class AdivinadorResultados {
 	 */
 	public static Participante[] mismaCinta(Participante a, Participante[] g) {
 
+		/** variables usadas para determinar el tamanio del arreglo */
 		int numTotal = 0;
 		int tamanioNuevoArreglo;
 
@@ -176,8 +187,10 @@ public class AdivinadorResultados {
 
 		tamanioNuevoArreglo = numTotal; // tamanio del arreglo
 
+		/** Creando el arreglo con el tamanio correspondiente  */
 		Participante[] mismas = new Participante[tamanioNuevoArreglo];
 
+		/** Llenando el arreglo tal que cumpla la condicion requerida */
 		for (int i = 0; i < g.length; i++) {
 			if ((a.getCinta().getNombre()).equals(g[i].getCinta().getNombre())) {
 				mismas[i] = g[i];
@@ -199,9 +212,9 @@ public class AdivinadorResultados {
 	 *         maximo, de 0 - 10.
 	 */
 	public static Participante[] indicesimilarAlAlumnoA(Participante a, Participante[] g) {
+		/** variables usadas para determinar el tamanio del arreglo */
 		int numTotal = 0;
 		int tamanioNuevoArreglo;
-
 		double indiceA = a.indiceDeVictorias();
 		
 
@@ -214,8 +227,10 @@ public class AdivinadorResultados {
 
 		tamanioNuevoArreglo = numTotal; // tamanio del arreglo
 
+		/** creando el arreglo con el tamanio correspondiente */
 		Participante[] similar = new Participante[tamanioNuevoArreglo];
 
+		/** llenando el arreglo tal que cumpla la condicion requerida */
 		for (int i = 0; i < g.length; i++) {
 			if (g[i].indiceDeVictorias() >= indiceA - 10 && g[i].indiceDeVictorias() <= indiceA + 10) {
 				similar[i] = g[i];
