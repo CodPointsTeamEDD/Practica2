@@ -316,28 +316,49 @@ public class AdivinadorResultados {
 		/* Nombre del archivo a leer */
 		String nombreArchivo = "participantes.txt";
 
-		/* Participante "a" */
-		Participante a;
+		/* Numero de Participantes en el archivo */
+		int numPart = 0;
 
-		/* Participantes */
-		// Participante[] g = new Participante[];
+		/* Lectura del archivo para estimar numero de participantes */
+        try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
+            String linea;
+			
+			// String nombreParticipante;
+			// int numMedallas;
+			// int numTorneos;
+			// Cinta cinta;
 
-		/* Lectura del archivo */
+            while ((linea = br.readLine()) != null) {
+				// System.out.println(
+				// 	AdivinadorResultados.extraerNombre(linea) + ", " + 
+				// 	AdivinadorResultados.extraerNumMedallas(linea) + ", " + 
+				// 	AdivinadorResultados.extraerParticipaciones(linea) + ", " +
+				// 	AdivinadorResultados.extraerNombreCinta(linea) 
+				// );
+				numPart++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+		/* Arreglo de participantes */
+		Participante[] g = new Participante[numPart]; 
+
+		/* Lectura del archivo para crear participates */
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
             String linea;
 			
 			String nombreParticipante;
 			int numMedallas;
 			int numTorneos;
-			Cinta cinta;
+			String cinta;
 
             while ((linea = br.readLine()) != null) {
-				System.out.println(
-					AdivinadorResultados.extraerNombre(linea) + ", " + 
-					AdivinadorResultados.extraerNumMedallas(linea) + ", " + 
-					AdivinadorResultados.extraerParticipaciones(linea) + ", " +
-					AdivinadorResultados.extraerNombreCinta(linea) 
-				);
+				nombreParticipante = AdivinadorResultados.extraerNombre(linea); 
+				numMedallas = AdivinadorResultados.extraerNumMedallas(linea); 
+				numTorneos = AdivinadorResultados.extraerParticipaciones(linea); 
+				cinta = AdivinadorResultados.extraerNombreCinta(linea); 
+				
             }
         } catch (IOException e) {
             e.printStackTrace();
