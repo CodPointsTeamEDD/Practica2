@@ -1,39 +1,138 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class AdivinadorResultados {
 
+	/**
+	 * Metodo que determina cúales participantes de un grupo perderían un
+	 * enfrentamiento ante el Participante "a"
+	 * 
+	 * @param a Participante denotado por a
+	 * @param g Arreglo de participantes denotados por g
+	 * @return Arreglo de tipo Participante que contiene solo los participantes 
+	 *		   que perdirían un enfrentamiento ante el participante "a", usando 
+	 *		   como criterio el indice de victorias. Ante un posible empate se 
+	 *		   usa como criterio el rango de la cienta que poseen 
+	 */
 	public static Participante[] alumnoALesGana(Participante a, Participante[] g){
-		Participante[] alumnosQuePierdenConA;
-
-		// Obtener el tamanio que debe tener alumnosQuePierdenConA
+		/* Obteniendo el tamanio que debe tener alumnosQuePierdenConA */
 		int tamanioArreglo = 0;
 		for(int i = 0; i<g.length; i++){
-			// Comparando indice de victorias de Participante "a" con Participante g[i]
+			/* 
+				Comparando indice de victorias y determinar si Participante "a" pierde, 
+				empata o gana con g[i] 
+			*/
 			if (a.indiceDeVictorias() > g[i].indiceDeVictorias()) {
-				// Si ""
+				/* tamanioArreglo++ si "a" gana a g[i] */
 				tamanioArreglo++;
 			} else if (a.indiceDeVictorias() == g[i].indiceDeVictorias()) {
+				/* 
+					Criterio de desempate en caso de tener ambos Participantes el 
+				   	mismo indice de victoria
+				*/
 				if (a.cinta.getNivelNumerico() > g[i].cinta.getNivelNumerico()) {
+					/* tamanioArreglo++ si "a" tiene cinta de mayor rango que g[i] */
 					tamanioArreglo++;
 				} 
 			}
 		}
 
-		return alumnosQuePierdenConA;
-	}
-	
-	public static Participante[] alumnoAPierde (Participante a, Participante[] g){
-		/*Aquí va tu código*/
-	}
-	
-	public static double[] indicesVictoria(Participante[] g){
-		/*Aquí va tu código*/
+		/* Creando arreglo con el tamanio correspondiente */
+		Participante[] perdedores = new Participante[tamanioArreglo];
+
+		/* Agregando elementos al arreglo "perdedores" */
+		for(int i = 0; i<g.length; i++){
+			/* 
+				Comparando indice de victorias y determinar si Participante "a" pierde, 
+				empata o gana con g[i] 
+			*/
+			if (a.indiceDeVictorias() > g[i].indiceDeVictorias()) {
+				/* 
+					Insertando elemento en arreglo "perdedores" si Participante "a"
+					gana a g[i] 
+				*/
+				perdedores[i] = g[i];
+			} else if (a.indiceDeVictorias() == g[i].indiceDeVictorias()) {
+				/* 
+					Criterio de desempate en caso de tener ambos Participantes el 
+				   	mismo indice de victoria
+				*/
+				if (a.cinta.getNivelNumerico() > g[i].cinta.getNivelNumerico()) {
+					/* 
+						Agregando elemento al arreglo "Perdedores" si Participante 
+						"a" tiene cinta de mayor rango que g[i] 
+					*/
+					perdedores[i] = g[i];
+				} 
+			}
+		}
+
+		return perdedores;
 	}
 
-	public static Participante[] alumnoAPierde(Participante a, Participante[] g) {
-		/* Aquí va tu código */
+	/**
+	 * Metodo que determina cúales participantes de un grupo ganarían un
+	 * enfrentamiento ante el Participante "a"
+	 * 
+	 * @param a Participante denotado por a
+	 * @param g Arreglo de participantes denotados por g
+	 * @return Arreglo de tipo Participante que contiene solo los participantes 
+	 *		   que ganarían un enfrentamiento ante el participante "a", usando 
+	 *		   como criterio el indice de victorias. Ante un posible empate se 
+	 *		   usa como criterio el rango de la cienta que poseen 
+	 */
+	public static Participante[] alumnoAPierde (Participante a, Participante[] g){
+		/* Obteniendo el tamanio que debe tener alumnosQuePierdenConA */
+		int tamanioArreglo = 0;
+		for(int i = 0; i<g.length; i++){
+			/* 
+				Comparando indice de victorias y determinar si Participante "a" pierde, 
+				empata o gana con g[i] 
+			*/
+			if (a.indiceDeVictorias() < g[i].indiceDeVictorias()) {
+				/* tamanioArreglo++ si "a" pierde con g[i] */
+				tamanioArreglo++;
+			} else if (a.indiceDeVictorias() == g[i].indiceDeVictorias()) {
+				/* 
+					Criterio de desempate en caso de tener ambos Participantes el 
+				   	mismo indice de victoria
+				*/
+				if (a.cinta.getNivelNumerico() < g[i].cinta.getNivelNumerico()) {
+					/* tamanioArreglo++ si "a" tiene cinta de menor rango que g[i] */
+					tamanioArreglo++;
+				} 
+			}
+		}
+
+		/* Creando arreglo con el tamanio correspondiente */
+		Participante[] ganadores = new Participante[tamanioArreglo];
+
+		/* Agregando elementos al arreglo "perdedores" */
+		for(int i = 0; i<g.length; i++){
+			/* 
+				Comparando indice de victorias y determinar si Participante "a" pierde, 
+				empata o gana con g[i] 
+			*/
+			if (a.indiceDeVictorias() > g[i].indiceDeVictorias()) {
+				/* 
+					Insertando elemento en arreglo "perdedores" si Participante "a"
+					gana a g[i] 
+				*/
+				ganadores[i] = g[i];
+			} else if (a.indiceDeVictorias() == g[i].indiceDeVictorias()) {
+				/* 
+					Criterio de desempate en caso de tener ambos Participantes el 
+				   	mismo indice de victoria
+				*/
+				if (a.cinta.getNivelNumerico() > g[i].cinta.getNivelNumerico()) {
+					/* 
+						Agregando elemento al arreglo "Perdedores" si Participante 
+						"a" tiene cinta de mayor rango que g[i] 
+					*/
+					ganadores[i] = g[i];
+				} 
+			}
+		}
+
+		return ganadores;
 	}
 
 	/**

@@ -17,11 +17,11 @@ public class Cinta {
 	private int nivelNumerico;
 
 	/** CONSTANTES (se usarán al momento de crear objetos de tipo Cinta) */
-	public static Object[] CINTA_BLANCA = {"Blanca", 1};
+	public static Object[] CINTA_BLANCA  = {"Blanca", 1};
 	public static Object[] CINTA_NARANJA = {"Naranja", 2};
-	public static Object[] CINTA_MORADA = {"Morada", 3};
-	public static Object[] CINTA_AZUL = {"Azul", 4};
-	public static Object[] CINTA_VERDE = {"Verde", 5};
+	public static Object[] CINTA_MORADA  = {"Morada", 3};
+	public static Object[] CINTA_AZUL    = {"Azul", 4};
+	public static Object[] CINTA_VERDE 	 = {"Verde", 5};
 
 	/**
 	 * Constructor de la clase {@code Cinta}
