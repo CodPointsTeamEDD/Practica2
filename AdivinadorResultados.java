@@ -278,14 +278,37 @@ public class AdivinadorResultados {
 	public static String extraerNombre(String cadena){
 		return AdivinadorResultados.extraerSubcadena(cadena, ',', 0);
 	}
-	public static String extraerNumMedallas(String cadena){
-		return AdivinadorResultados.extraerSubcadena(cadena, ',', 1);
+	public static int extraerNumMedallas(String cadena){
+		int numMedallas;
+		String subcadena = AdivinadorResultados.extraerSubcadena(cadena, ',', 1);
+
+		/* Quitando "M:" */
+		subcadena = AdivinadorResultados.extraerSubcadena(subcadena, ':', 1);
+
+		/* Asignar un INT a numMedallas */
+		numMedallas = Integer.parseInt(subcadena);
+
+		return numMedallas;
 	}
-	public static String extraerParticipaciones(String cadena){
-		return AdivinadorResultados.extraerSubcadena(cadena, ',', 2);
+	public static int extraerParticipaciones(String cadena){
+		int numPart;
+		String subcadena = AdivinadorResultados.extraerSubcadena(cadena, ',', 2);
+
+		/* Quitando "P:" */
+		subcadena = AdivinadorResultados.extraerSubcadena(subcadena, ':', 1);
+
+		/* Asignar un INT a numPart */
+		numPart = Integer.parseInt(subcadena);
+
+		return numPart;
 	}
 	public static String extraerNombreCinta(String cadena){
-		return AdivinadorResultados.extraerSubcadena(cadena, ',', 3);
+		String subcadena = AdivinadorResultados.extraerSubcadena(cadena, ',', 3);
+
+		/* Quitando "N:" */
+		subcadena = AdivinadorResultados.extraerSubcadena(subcadena, ':', 1);
+
+		return subcadena;
 	}
 
 
@@ -295,6 +318,9 @@ public class AdivinadorResultados {
 
 		/* Participante "a" */
 		Participante a;
+
+		/* Participantes */
+		// Participante[] g = new Participante[];
 
 		/* Lectura del archivo */
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
