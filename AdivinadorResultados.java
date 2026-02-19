@@ -322,19 +322,8 @@ public class AdivinadorResultados {
 		/* Lectura del archivo para estimar numero de participantes */
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
             String linea;
-			
-			// String nombreParticipante;
-			// int numMedallas;
-			// int numTorneos;
-			// Cinta cinta;
 
             while ((linea = br.readLine()) != null) {
-				// System.out.println(
-				// 	AdivinadorResultados.extraerNombre(linea) + ", " + 
-				// 	AdivinadorResultados.extraerNumMedallas(linea) + ", " + 
-				// 	AdivinadorResultados.extraerParticipaciones(linea) + ", " +
-				// 	AdivinadorResultados.extraerNombreCinta(linea) 
-				// );
 				numPart++;
             }
         } catch (IOException e) {
@@ -351,18 +340,34 @@ public class AdivinadorResultados {
 			String nombreParticipante;
 			int numMedallas;
 			int numTorneos;
-			String cinta;
+			String nombreCinta;
+			Cinta cinta;
+
+			Participante partAux;
+
+			int i = 0;
 
             while ((linea = br.readLine()) != null) {
 				nombreParticipante = AdivinadorResultados.extraerNombre(linea); 
 				numMedallas = AdivinadorResultados.extraerNumMedallas(linea); 
 				numTorneos = AdivinadorResultados.extraerParticipaciones(linea); 
-				cinta = AdivinadorResultados.extraerNombreCinta(linea); 
+				nombreCinta = AdivinadorResultados.extraerNombreCinta(linea); 
+				cinta = new Cinta(nombreCinta, Cinta.getNivelNumerico(nombreCinta));
+
+				partAux = new Participante(nombreParticipante, numMedallas, numTorneos, cinta);
 				
+				g[i] = partAux;
+				i++;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+		for (Participante elem : g) {
+			System.out.print(elem.getNombre() + ", ");
+			System.out.print(elem.getNumMedallas() + ", ");
+			System.out.println(elem.getNumTorneos());
+		}
 	}
+
 
 }

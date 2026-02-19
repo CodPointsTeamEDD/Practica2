@@ -29,6 +29,7 @@ public class Participante{
 	 * @param cinta cinta que posee el participante
 	*/
 	public Participante(String nombre, int numMedallas, int numTorneos, Cinta cinta){	
+		this.nombre = nombre;
 		this.numMedallas = numMedallas;
 		this.numTorneos = numTorneos;
 		this.cinta = cinta;

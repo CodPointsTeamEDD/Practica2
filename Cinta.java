@@ -16,12 +16,9 @@ public class Cinta {
 	/** Nivel numerico */
 	private int nivelNumerico;
 
-	/** CONSTANTES (se usarán al momento de crear objetos de tipo Cinta) */
-	public static Object[] CINTA_BLANCA  = {"Blanca", 1};
-	public static Object[] CINTA_NARANJA = {"Naranja", 2};
-	public static Object[] CINTA_MORADA  = {"Morada", 3};
-	public static Object[] CINTA_AZUL    = {"Azul", 4};
-	public static Object[] CINTA_VERDE 	 = {"Verde", 5};
+	/** CONSTANTES */
+	public static String[] NOMBRES_CINTAS = {"Kaimua", "Moli", "Lua", "Moana", "Ulakui"};
+	public static int[] NIVELES_NUMERICOS = {1, 2, 3, 4, 5};
 
 	/**
 	 * Constructor de la clase {@code Cinta}
@@ -45,10 +42,33 @@ public class Cinta {
 	}
 	/**
 	 * Metodo que obtiene el nivel numerico de la cinta
-	 * 
 	 * @return Nivel de la cinta
 	 */
 	public int getNivelNumerico() {
+		return nivelNumerico;
+	}
+
+	/**
+	 * Metodo que obtiene el nivel numerico de la cinta dado un nombre
+	 * @param nombreDeLaCinta
+	 * @return Nivel de la cinta
+	 */
+	public static int getNivelNumerico(String nombreCinta) {
+		int indiceNombre = 0;
+		int nivelNumerico;
+
+		/* Obteniendo el indice del nombre*/
+		for (int i = 0; i < Cinta.NOMBRES_CINTAS.length; i++) {
+			if (!nombreCinta.equals(NOMBRES_CINTAS[i])) {
+				indiceNombre++;
+			} else{
+				break;
+			}
+		}
+
+		/* Obteniendo el nivel correspondiente */
+		nivelNumerico = Cinta.NIVELES_NUMERICOS[indiceNombre-1];
+
 		return nivelNumerico;
 	}
 
