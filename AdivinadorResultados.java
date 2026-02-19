@@ -1,37 +1,40 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class AdivinadorResultados {
 
 	/**
 	 * Metodo que determina cúales participantes de un grupo perderían un
 	 * enfrentamiento ante el Participante "a"
-	 * 
+	 *
 	 * @param a Participante denotado por a
 	 * @param g Arreglo de participantes denotados por g
-	 * @return Arreglo de tipo Participante que contiene solo los participantes 
-	 *		   que perdirían un enfrentamiento ante el participante "a", usando 
-	 *		   como criterio el indice de victorias. Ante un posible empate se 
-	 *		   usa como criterio el rango de la cienta que poseen 
+	 * @return Arreglo de tipo Participante que contiene solo los participantes
+	 *		   que perdirían un enfrentamiento ante el participante "a", usando
+	 *		   como criterio el indice de victorias. Ante un posible empate se
+	 *		   usa como criterio el rango de la cienta que poseen
 	 */
 	public static Participante[] alumnoALesGana(Participante a, Participante[] g){
 		/* Obteniendo el tamanio que debe tener alumnosQuePierdenConA */
 		int tamanioArreglo = 0;
 		for(int i = 0; i<g.length; i++){
-			/* 
-				Comparando indice de victorias y determinar si Participante "a" pierde, 
-				empata o gana con g[i] 
+			/*
+				Comparando indice de victorias y determinar si Participante "a" pierde,
+				empata o gana con g[i]
 			*/
 			if (a.indiceDeVictorias() > g[i].indiceDeVictorias()) {
 				/* tamanioArreglo++ si "a" gana a g[i] */
 				tamanioArreglo++;
 			} else if (a.indiceDeVictorias() == g[i].indiceDeVictorias()) {
-				/* 
-					Criterio de desempate en caso de tener ambos Participantes el 
+				/*
+					Criterio de desempate en caso de tener ambos Participantes el
 				   	mismo indice de victoria
 				*/
 				if (a.cinta.getNivelNumerico() > g[i].cinta.getNivelNumerico()) {
 					/* tamanioArreglo++ si "a" tiene cinta de mayor rango que g[i] */
 					tamanioArreglo++;
-				} 
+				}
 			}
 		}
 
@@ -40,28 +43,28 @@ public class AdivinadorResultados {
 
 		/* Agregando elementos al arreglo "perdedores" */
 		for(int i = 0; i<g.length; i++){
-			/* 
-				Comparando indice de victorias y determinar si Participante "a" pierde, 
-				empata o gana con g[i] 
+			/*
+				Comparando indice de victorias y determinar si Participante "a" pierde,
+				empata o gana con g[i]
 			*/
 			if (a.indiceDeVictorias() > g[i].indiceDeVictorias()) {
-				/* 
+				/*
 					Insertando elemento en arreglo "perdedores" si Participante "a"
-					gana a g[i] 
+					gana a g[i]
 				*/
 				perdedores[i] = g[i];
 			} else if (a.indiceDeVictorias() == g[i].indiceDeVictorias()) {
-				/* 
-					Criterio de desempate en caso de tener ambos Participantes el 
+				/*
+					Criterio de desempate en caso de tener ambos Participantes el
 				   	mismo indice de victoria
 				*/
 				if (a.cinta.getNivelNumerico() > g[i].cinta.getNivelNumerico()) {
-					/* 
-						Agregando elemento al arreglo "Perdedores" si Participante 
-						"a" tiene cinta de mayor rango que g[i] 
+					/*
+						Agregando elemento al arreglo "Perdedores" si Participante
+						"a" tiene cinta de mayor rango que g[i]
 					*/
 					perdedores[i] = g[i];
-				} 
+				}
 			}
 		}
 
@@ -71,34 +74,34 @@ public class AdivinadorResultados {
 	/**
 	 * Metodo que determina cúales participantes de un grupo ganarían un
 	 * enfrentamiento ante el Participante "a"
-	 * 
+	 *
 	 * @param a Participante denotado por a
 	 * @param g Arreglo de participantes denotados por g
-	 * @return Arreglo de tipo Participante que contiene solo los participantes 
-	 *		   que ganarían un enfrentamiento ante el participante "a", usando 
-	 *		   como criterio el indice de victorias. Ante un posible empate se 
-	 *		   usa como criterio el rango de la cienta que poseen 
+	 * @return Arreglo de tipo Participante que contiene solo los participantes
+	 *		   que ganarían un enfrentamiento ante el participante "a", usando
+	 *		   como criterio el indice de victorias. Ante un posible empate se
+	 *		   usa como criterio el rango de la cienta que poseen
 	 */
 	public static Participante[] alumnoAPierde (Participante a, Participante[] g){
 		/* Obteniendo el tamanio que debe tener alumnosQuePierdenConA */
 		int tamanioArreglo = 0;
 		for(int i = 0; i<g.length; i++){
-			/* 
-				Comparando indice de victorias y determinar si Participante "a" pierde, 
-				empata o gana con g[i] 
+			/*
+				Comparando indice de victorias y determinar si Participante "a" pierde,
+				empata o gana con g[i]
 			*/
 			if (a.indiceDeVictorias() < g[i].indiceDeVictorias()) {
 				/* tamanioArreglo++ si "a" pierde con g[i] */
 				tamanioArreglo++;
 			} else if (a.indiceDeVictorias() == g[i].indiceDeVictorias()) {
-				/* 
-					Criterio de desempate en caso de tener ambos Participantes el 
+				/*
+					Criterio de desempate en caso de tener ambos Participantes el
 				   	mismo indice de victoria
 				*/
 				if (a.cinta.getNivelNumerico() < g[i].cinta.getNivelNumerico()) {
 					/* tamanioArreglo++ si "a" tiene cinta de menor rango que g[i] */
 					tamanioArreglo++;
-				} 
+				}
 			}
 		}
 
@@ -107,28 +110,28 @@ public class AdivinadorResultados {
 
 		/* Agregando elementos al arreglo "perdedores" */
 		for(int i = 0; i<g.length; i++){
-			/* 
-				Comparando indice de victorias y determinar si Participante "a" pierde, 
-				empata o gana con g[i] 
+			/*
+				Comparando indice de victorias y determinar si Participante "a" pierde,
+				empata o gana con g[i]
 			*/
 			if (a.indiceDeVictorias() > g[i].indiceDeVictorias()) {
-				/* 
+				/*
 					Insertando elemento en arreglo "perdedores" si Participante "a"
-					gana a g[i] 
+					gana a g[i]
 				*/
 				ganadores[i] = g[i];
 			} else if (a.indiceDeVictorias() == g[i].indiceDeVictorias()) {
-				/* 
-					Criterio de desempate en caso de tener ambos Participantes el 
+				/*
+					Criterio de desempate en caso de tener ambos Participantes el
 				   	mismo indice de victoria
 				*/
 				if (a.cinta.getNivelNumerico() > g[i].cinta.getNivelNumerico()) {
-					/* 
-						Agregando elemento al arreglo "Perdedores" si Participante 
-						"a" tiene cinta de mayor rango que g[i] 
+					/*
+						Agregando elemento al arreglo "Perdedores" si Participante
+						"a" tiene cinta de mayor rango que g[i]
 					*/
 					ganadores[i] = g[i];
-				} 
+				}
 			}
 		}
 
@@ -137,7 +140,7 @@ public class AdivinadorResultados {
 
 	/**
 	 * Metodo que guarda en un arreglo los indices de victoria de los participantes
-	 * 
+	 *
 	 * @param g arreglo de participantes denotados por g
 	 * @return arreglo con los indices de victoria de los participantes
 	 */
@@ -156,7 +159,7 @@ public class AdivinadorResultados {
 	/**
 	 * Metodo que determina cuales participantes tienen la misma cinta que el
 	 * participante a.
-	 * 
+	 *
 	 * @param a Participante denotado por a
 	 * @param g Arreglo de participantes denotados por g
 	 * @return Arreglo con los participantes tienen la misma cinta que el
@@ -191,7 +194,7 @@ public class AdivinadorResultados {
 	 * Metodo que determina que participantes del grupo presentan un ındice de
 	 * victoria cuya diferencia respecto al ındice de victoria del alumno a sea,
 	 * como maximo, de 0 - 10.
-	 * 
+	 *
 	 * @param a Participante denotado por a
 	 * @param g Arreglo de participantes denotados por g
 	 * @return Arreglo con participantes del grupo presentan un ındice de victoria
@@ -203,7 +206,7 @@ public class AdivinadorResultados {
 		int tamanioNuevoArreglo;
 
 		double indiceA = a.indiceDeVictorias();
-		
+
 
 		// Ciclo para saber que tamanio tendra nuestro nuevo arreglo
 		for (int i = 0; i < g.length; i++) {
@@ -225,8 +228,45 @@ public class AdivinadorResultados {
 		return similar;
 	}
 
+
+	public static String extraerSubcadena(String cadena, char separador, int posicionElemento){
+		/* Inicializando variables */
+		String subCadena = cadena;
+		int indiceSeparador;
+
+		/*
+			Borrando elementos de la cadena anteriores a posicionElemento,
+			usando el separador pasado como parametro al metodo
+		*/
+		for (int i = 0; i < posicionElemento; i++) {
+			/* Obteniendo el indice del separador i */
+			indiceSeparador = cadena.indexOf(separador);
+
+			/* Removiendo el primer elemento de la cadena */
+			subCadena = subCadena.substring(indiceSeparador);
+		}
+
+		/* Obteniendo indice del siguiente separador */
+		indiceSeparador = cadena.indexOf(separador);
+
+		/* Obteniendo el elemento buscado */
+		String nombre = cadena.substring(0, indiceSeparador);
+
+		/* Retornando el elemento */
+		return nombre;
+	}
+
 	public static void main(String[] args) {
-		/* Aquí va tu código */
+		String nombreArchivo = "participantes.txt";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+				System.out.println(AdivinadorResultados.extraerSubcadena(linea, ',' , 1));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 }

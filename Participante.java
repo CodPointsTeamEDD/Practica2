@@ -18,13 +18,17 @@ public class Participante{
 	/*cinta que posee el participante*/
 	Cinta cinta;
 
+	/* Nombre del participante */
+	String nombre;
+
 	/** 
 	 * Constructor por parametro de Participante
+	 * @param nombre nombre dle participante
 	 * @param numMedallas numero de medallas conseguidas por el participante
 	 * @param numTorneos numero de torneos en los que a participado el participante
 	 * @param cinta cinta que posee el participante
 	*/
-	public Participante(int numMedallas, int numTorneos, Cinta cinta){	
+	public Participante(String nombre, int numMedallas, int numTorneos, Cinta cinta){	
 		this.numMedallas = numMedallas;
 		this.numTorneos = numTorneos;
 		this.cinta = cinta;
@@ -39,6 +43,14 @@ public class Participante{
 	}
 
 	// Getters
+
+	/** 
+	 * metodo para obtener el nombre del participante
+	 * @return devuelve un String con el nombre del participante
+	*/
+	public String getNombre(){
+		return this.nombre;
+	}
 
 	/** 
 	 * metodo para obtener el numero de medallas
