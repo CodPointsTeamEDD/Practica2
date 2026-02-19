@@ -254,29 +254,64 @@ public class AdivinadorResultados {
 		*/
 		for (int i = 0; i < posicionElemento; i++) {
 			/* Obteniendo el indice del separador i */
-			indiceSeparador = cadena.indexOf(separador);
+			indiceSeparador = subCadena.indexOf(separador);
 
 			/* Removiendo el primer elemento de la cadena */
-			subCadena = subCadena.substring(indiceSeparador);
+			subCadena = subCadena.substring(indiceSeparador+1);
 		}
 
 		/* Obteniendo indice del siguiente separador */
-		indiceSeparador = cadena.indexOf(separador);
+		indiceSeparador = subCadena.indexOf(separador);
+
+		if (indiceSeparador == -1) {
+			/* Obteniendo el elemento buscado */
+			return subCadena;			
+		} 
 
 		/* Obteniendo el elemento buscado */
-		String nombre = cadena.substring(0, indiceSeparador);
+		String elemento = subCadena.substring(0, indiceSeparador);			
 
 		/* Retornando el elemento */
-		return nombre;
+		return elemento;
 	}
 
+	public static String extraerNombre(String cadena){
+		return AdivinadorResultados.extraerSubcadena(cadena, ',', 0);
+	}
+	public static String extraerNumMedallas(String cadena){
+		return AdivinadorResultados.extraerSubcadena(cadena, ',', 1);
+	}
+	public static String extraerParticipaciones(String cadena){
+		return AdivinadorResultados.extraerSubcadena(cadena, ',', 2);
+	}
+	public static String extraerNombreCinta(String cadena){
+		return AdivinadorResultados.extraerSubcadena(cadena, ',', 3);
+	}
+
+
 	public static void main(String[] args) {
+		/* Nombre del archivo a leer */
 		String nombreArchivo = "participantes.txt";
 
+		/* Participante "a" */
+		Participante a;
+
+		/* Lectura del archivo */
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
             String linea;
+			
+			String nombreParticipante;
+			int numMedallas;
+			int numTorneos;
+			Cinta cinta;
+
             while ((linea = br.readLine()) != null) {
-				System.out.println(AdivinadorResultados.extraerSubcadena(linea, ',' , 1));
+				System.out.println(
+					AdivinadorResultados.extraerNombre(linea) + ", " + 
+					AdivinadorResultados.extraerNumMedallas(linea) + ", " + 
+					AdivinadorResultados.extraerParticipaciones(linea) + ", " +
+					AdivinadorResultados.extraerNombreCinta(linea) 
+				);
             }
         } catch (IOException e) {
             e.printStackTrace();
