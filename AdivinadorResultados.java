@@ -31,6 +31,7 @@ public class AdivinadorResultados {
 		double indiceA = a.indiceDeVictorias();
 		/* guardando el nivel numerico de la cinta */
 		int nvlNumericoCinta = a.cinta.getNivelNumerico();
+
 		for(int i = 0; i<g.length; i++){
 			/*
 				Comparando indice de victorias y determinar si Participante "a" pierde,
@@ -103,20 +104,25 @@ public class AdivinadorResultados {
 	public static Participante[] alumnoAPierde (Participante a, Participante[] g){
 		/* Obteniendo el tamanio que debe tener alumnosQuePierdenConA */
 		int tamanioArreglo = 0;
+		/* guadando el indice de victorias de a */
+		double indiceA = a.indiceDeVictorias();
+		/* guardando el nivel numerico de la cinta */
+		int nvlNumericoCinta = a.cinta.getNivelNumerico();
+
 		for(int i = 0; i<g.length; i++){
 			/*
 				Comparando indice de victorias y determinar si Participante "a" pierde,
 				empata o gana con g[i]
 			*/
-			if (a.indiceDeVictorias() < g[i].indiceDeVictorias()) {
+			if (indiceA < g[i].indiceDeVictorias()) {
 				/* tamanioArreglo++ si "a" pierde con g[i] */
 				tamanioArreglo++;
-			} else if (a.indiceDeVictorias() == g[i].indiceDeVictorias()) {
+			} else if (indiceA == g[i].indiceDeVictorias()) {
 				/*
 					Criterio de desempate en caso de tener ambos Participantes el
 				   	mismo indice de victoria
 				*/
-				if (a.cinta.getNivelNumerico() < g[i].cinta.getNivelNumerico()) {
+				if (nvlNumericoCinta < g[i].cinta.getNivelNumerico()) {
 					/* tamanioArreglo++ si "a" tiene cinta de menor rango que g[i] */
 					tamanioArreglo++;
 				}
@@ -135,19 +141,19 @@ public class AdivinadorResultados {
 				Comparando indice de victorias y determinar si Participante "a" pierde,
 				empata o gana con g[i]
 			*/
-			if (a.indiceDeVictorias() < g[i].indiceDeVictorias()) {
+			if (indiceA < g[i].indiceDeVictorias()) {
 				/*
 					Insertando elemento en arreglo "perdedores" si Participante "a"
 					gana a g[i]
 				*/
 				ganadores[iPer] = g[i];
 				iPer++;
-			} else if (a.indiceDeVictorias() == g[i].indiceDeVictorias()) {
+			} else if (indiceA == g[i].indiceDeVictorias()) {
 				/*
 					Criterio de desempate en caso de tener ambos Participantes el
 				   	mismo indice de victoria
 				*/
-				if (a.cinta.getNivelNumerico() < g[i].cinta.getNivelNumerico()) {
+				if (nvlNumericoCinta < g[i].cinta.getNivelNumerico()) {
 					/*
 						Agregando elemento al arreglo "Perdedores" si Participante
 						"a" tiene cinta de mayor rango que g[i]
@@ -186,17 +192,18 @@ public class AdivinadorResultados {
 	 * @param a Participante denotado por a
 	 * @param g Arreglo de participantes denotados por g
 	 * @return Arreglo con los participantes tienen la misma cinta que el
-	 *         participante a
+	 *         participsante a
 	 */
 	public static Participante[] mismaCinta(Participante a, Participante[] g) {
 
 		/** variables usadas para determinar el tamanio del arreglo */
 		int numTotal = 0;
 		int tamanioNuevoArreglo;
+		String nombreA = a.getCinta().getNombre();
 
 		// Ciclo para saber que tamanio tendra nuestro nuevo arreglo
 		for (int i = 0; i < g.length; i++) {
-			if ((a.getCinta().getNombre()).equals(g[i].getCinta().getNombre())) {
+			if ((nombreA).equals(g[i].getCinta().getNombre())) {
 				numTotal++;
 			}
 		}
@@ -206,10 +213,14 @@ public class AdivinadorResultados {
 		/** Creando el arreglo con el tamanio correspondiente  */
 		Participante[] mismas = new Participante[tamanioNuevoArreglo];
 
+		/* Variable auxiliar que representa indice en arreglo mismas */
+		int iMism = 0;
+
 		/** Llenando el arreglo tal que cumpla la condicion requerida */
 		for (int i = 0; i < g.length; i++) {
-			if ((a.getCinta().getNombre()).equals(g[i].getCinta().getNombre())) {
-				mismas[i] = g[i];
+			if ((nombreA).equals(g[i].getCinta().getNombre())) {
+				mismas[iMism] = g[i];
+				iMism++;
 			}
 		}
 
