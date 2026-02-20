@@ -322,7 +322,6 @@ public class AdivinadorResultados {
 		/* Lectura del archivo para estimar numero de participantes */
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
             String linea;
-
             while ((linea = br.readLine()) != null) {
 				numPart++;
             }
@@ -330,43 +329,49 @@ public class AdivinadorResultados {
             e.printStackTrace();
         }
 
-		/* Arreglo de participantes */
-		Participante[] g = new Participante[numPart]; 
+		/* Variables que almacenarán participantes */
+		Participante[] g = new Participante[numPart-1]; 
+		Participante a = new Participante("", 0, 0, new Cinta("Kaimua", Cinta.getNivelNumerico("Kaimua")));
 
 		/* Lectura del archivo para crear participates */
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
+			/* Variable auxiliar que almacena la linea leida */
             String linea;
 			
+			/* Valores que se pasarán al constructor de Parcicipante */
 			String nombreParticipante;
 			int numMedallas;
 			int numTorneos;
 			String nombreCinta;
 			Cinta cinta;
 
-			Participante partAux;
-
+			/* Cantidad de lineas leidas */
 			int i = 0;
 
             while ((linea = br.readLine()) != null) {
+				/* Recuperando valores de la linea de texto */
 				nombreParticipante = AdivinadorResultados.extraerNombre(linea); 
 				numMedallas = AdivinadorResultados.extraerNumMedallas(linea); 
 				numTorneos = AdivinadorResultados.extraerParticipaciones(linea); 
 				nombreCinta = AdivinadorResultados.extraerNombreCinta(linea); 
 				cinta = new Cinta(nombreCinta, Cinta.getNivelNumerico(nombreCinta));
 
-				partAux = new Participante(nombreParticipante, numMedallas, numTorneos, cinta);
-				
-				g[i] = partAux;
-				i++;
+				/* 
+					Creando el jugador "a" o insertando jugadores en arreglo de tipo 
+					Participante"g"
+				*/
+				if (i != 0) {
+					g[i-1] = new Participante(nombreParticipante, numMedallas, numTorneos, cinta);
+					i++;
+				} else {
+					a = new Participante(nombreParticipante, numMedallas, numTorneos, cinta);
+					i++;
+				}
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-		for (Participante elem : g) {
-			System.out.print(elem.getNombre() + ", ");
-			System.out.print(elem.getNumMedallas() + ", ");
-			System.out.println(elem.getNumTorneos());
-		}
+
 	}
 
 

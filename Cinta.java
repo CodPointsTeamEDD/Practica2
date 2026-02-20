@@ -59,7 +59,7 @@ public class Cinta {
 
 		/* Obteniendo el indice del nombre*/
 		for (int i = 0; i < Cinta.NOMBRES_CINTAS.length; i++) {
-			if (!nombreCinta.equals(NOMBRES_CINTAS[i])) {
+			if (!nombreCinta.equals(NOMBRES_CINTAS[i]) || !nombreCinta.equals(NOMBRES_CINTAS[i] + " ") ) {
 				indiceNombre++;
 			} else{
 				break;
@@ -67,7 +67,7 @@ public class Cinta {
 		}
 
 		/* Obteniendo el nivel correspondiente */
-		nivelNumerico = Cinta.NIVELES_NUMERICOS[indiceNombre-1];
+		nivelNumerico = Cinta.NIVELES_NUMERICOS[indiceNombre - 1];
 
 		return nivelNumerico;
 	}
