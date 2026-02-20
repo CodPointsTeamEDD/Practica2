@@ -50,6 +50,9 @@ public class AdivinadorResultados {
 		/* Creando arreglo con el tamanio correspondiente */
 		Participante[] perdedores = new Participante[tamanioArreglo];
 
+		/* Variable auxiliar que representa indice en arreglo Perdedores */
+		int iPer = 0;
+
 		/* Agregando elementos al arreglo "perdedores" */
 		for(int i = 0; i<g.length; i++){
 			/*
@@ -61,7 +64,8 @@ public class AdivinadorResultados {
 					Insertando elemento en arreglo "perdedores" si Participante "a"
 					gana a g[i]
 				*/
-				perdedores[i] = g[i];
+				perdedores[iPer] = g[i];
+				iPer++;
 			} else if (a.indiceDeVictorias() == g[i].indiceDeVictorias()) {
 				/*
 					Criterio de desempate en caso de tener ambos Participantes el
@@ -72,7 +76,8 @@ public class AdivinadorResultados {
 						Agregando elemento al arreglo "Perdedores" si Participante
 						"a" tiene cinta de mayor rango que g[i]
 					*/
-					perdedores[i] = g[i];
+					perdedores[iPer] = g[i];
+					iPer++;
 				}
 			}
 		}
@@ -117,29 +122,34 @@ public class AdivinadorResultados {
 		/* Creando arreglo con el tamanio correspondiente */
 		Participante[] ganadores = new Participante[tamanioArreglo];
 
-		/* Agregando elementos al arreglo "perdedores" */
+		/* Variable auxiliar que representa indice en arreglo Perdedores */
+		int iPer = 0;
+
+		/* Agregando elementos al arreglo "ganadores" */
 		for(int i = 0; i<g.length; i++){
 			/*
 				Comparando indice de victorias y determinar si Participante "a" pierde,
 				empata o gana con g[i]
 			*/
-			if (a.indiceDeVictorias() > g[i].indiceDeVictorias()) {
+			if (a.indiceDeVictorias() < g[i].indiceDeVictorias()) {
 				/*
 					Insertando elemento en arreglo "perdedores" si Participante "a"
 					gana a g[i]
 				*/
-				ganadores[i] = g[i];
+				ganadores[iPer] = g[i];
+				iPer++;
 			} else if (a.indiceDeVictorias() == g[i].indiceDeVictorias()) {
 				/*
 					Criterio de desempate en caso de tener ambos Participantes el
 				   	mismo indice de victoria
 				*/
-				if (a.cinta.getNivelNumerico() > g[i].cinta.getNivelNumerico()) {
+				if (a.cinta.getNivelNumerico() < g[i].cinta.getNivelNumerico()) {
 					/*
 						Agregando elemento al arreglo "Perdedores" si Participante
 						"a" tiene cinta de mayor rango que g[i]
 					*/
-					ganadores[i] = g[i];
+					ganadores[iPer] = g[i];
+					iPer++;
 				}
 			}
 		}
@@ -313,6 +323,10 @@ public class AdivinadorResultados {
 
 
 	public static void main(String[] args) {
+		/* ----------------------------------------------------- */
+		/*     Lectura de archivo y extracción de información    */
+		/* ----------------------------------------------------- */
+
 		/* Nombre del archivo a leer */
 		String nombreArchivo = "participantes.txt";
 
@@ -333,17 +347,17 @@ public class AdivinadorResultados {
 		Participante[] g = new Participante[numPart-1]; 
 		Participante a = new Participante("", 0, 0, new Cinta("Kaimua", Cinta.getNivelNumerico("Kaimua")));
 
+		/* Variables temporales que se pasarán al constructor de Participante*/
+		String nombreParticipante;
+		int numMedallas;
+		int numTorneos;
+		String nombreCinta;
+		Cinta cinta;
+
 		/* Lectura del archivo para crear participates */
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
 			/* Variable auxiliar que almacena la linea leida */
             String linea;
-			
-			/* Valores que se pasarán al constructor de Parcicipante */
-			String nombreParticipante;
-			int numMedallas;
-			int numTorneos;
-			String nombreCinta;
-			Cinta cinta;
 
 			/* Cantidad de lineas leidas */
 			int i = 0;
@@ -371,6 +385,69 @@ public class AdivinadorResultados {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+		/* ----------------------------------------------------- */
+		/* Probando metodos y mostrando el resultado en pantalla */
+		/* ----------------------------------------------------- */
+		
+		System.out.println("¡¡Bienvenido usuario!!");
+		System.out.println("Este programa lee la información de un archivo .txt y la usa para extraer información sobre Participantes.");
+
+		System.out.println("");
+
+		System.out.println("PRIMER USUARIO (USUARIO A COMPARAR):");
+		System.out.println(a);
+
+		System.out.println("");
+
+		System.out.println("OTROS PARTICIPANTES: ");
+		for (Participante part : g) {
+			System.out.println(part);
+		}
+
+		System.out.println("");
+
+		/* Probando metodo alumnoALesGana */
+		System.out.println("El participante " + a.getNombre() + "les gana a los siguientes participantes:");
+		Participante[] perdedores = alumnoALesGana(a, g);
+		for (Participante part : perdedores) {
+			System.out.println("-" + part.getNombre());
+		}
+
+		System.out.println(" ");
+
+		/* Probando metodo alumnoALesGana */
+		System.out.println("El participante " + a.getNombre() + " pierde contra los siguientes participantes:");
+		Participante[] ganadores = alumnoAPierde(a, g);
+		for (Participante part : ganadores) {
+			System.out.println("-" + part.getNombre());
+		}
+
+		System.out.println(" ");
+
+
+		/* Probando metodo indicesDeVictoria */
+		System.out.println("Los siguientes son los indices de victoria de todos los participantes del arreglo");
+		double[] indicesVictoria = indicesVictoria(g);
+		for (Double ind : indicesVictoria) {
+			System.out.println(ind);
+		}
+
+		System.out.println(" ");
+
+		/* Probando metodo mismaCinta */
+		System.out.println("El participante " + a.getNombre() + " tiene la misma cinta que los siguientes participantes:");
+		Participante[] mismaCinta = mismaCinta(a, g);
+		for (Participante part : mismaCinta) {
+			System.out.println("-" + part.getNombre());
+		}
+
+		/* Probando metodo indiceSimilarAlAlumnoA */
+		System.out.println("El participante " + a.getNombre() + " tiene un indice de victoria similar al de los siguientes participantes:");
+		Participante[] indSimilar = indicesimilarAlAlumnoA(a, g);
+		for (Participante part : indSimilar) {
+			System.out.println("-" + part.getNombre());
+		}
 
 	}
 

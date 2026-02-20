@@ -40,7 +40,7 @@ public class Participante{
 	 * @return numero Real que representa el indice de victorias
 	*/
 	public double indiceDeVictorias(){	
-		return this.getNumMedallas() / this.getNumTorneos();
+		return (double) this.getNumMedallas() / (double) this.getNumTorneos();
 	}
 
 	// Getters
@@ -75,5 +75,15 @@ public class Participante{
 	*/
 	public Cinta getCinta(){
 		return this.cinta;
+	}
+
+	public String toString(){
+		String cadena = "";
+		cadena = cadena + "Nombre: " + getNombre() + ", ";
+		cadena = cadena + "NumMedallas: " + getNumMedallas() + ", ";
+		cadena = cadena + "Num torneos: " + getNumTorneos() + ", ";
+		cadena = cadena + "Cinta: " + getCinta().getNombre();
+
+		return cadena;
 	}
 }
