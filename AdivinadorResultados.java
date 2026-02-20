@@ -27,20 +27,24 @@ public class AdivinadorResultados {
 	public static Participante[] alumnoALesGana(Participante a, Participante[] g){
 		/* Obteniendo el tamanio que debe tener alumnosQuePierdenConA */
 		int tamanioArreglo = 0;
+		/* guadando el indice de victorias de a */
+		double indiceA = a.indiceDeVictorias();
+		/* guardando el nivel numerico de la cinta */
+		int nvlNumericoCinta = a.cinta.getNivelNumerico();
 		for(int i = 0; i<g.length; i++){
 			/*
 				Comparando indice de victorias y determinar si Participante "a" pierde,
 				empata o gana con g[i]
 			*/
-			if (a.indiceDeVictorias() > g[i].indiceDeVictorias()) {
+			if (indiceA > g[i].indiceDeVictorias()) {
 				/* tamanioArreglo++ si "a" gana a g[i] */
 				tamanioArreglo++;
-			} else if (a.indiceDeVictorias() == g[i].indiceDeVictorias()) {
+			} else if (indiceA == g[i].indiceDeVictorias()) {
 				/*
 					Criterio de desempate en caso de tener ambos Participantes el
 				   	mismo indice de victoria
 				*/
-				if (a.cinta.getNivelNumerico() > g[i].cinta.getNivelNumerico()) {
+				if (nvlNumericoCinta > g[i].cinta.getNivelNumerico()) {
 					/* tamanioArreglo++ si "a" tiene cinta de mayor rango que g[i] */
 					tamanioArreglo++;
 				}
@@ -59,19 +63,19 @@ public class AdivinadorResultados {
 				Comparando indice de victorias y determinar si Participante "a" pierde,
 				empata o gana con g[i]
 			*/
-			if (a.indiceDeVictorias() > g[i].indiceDeVictorias()) {
+			if (indiceA > g[i].indiceDeVictorias()) {
 				/*
 					Insertando elemento en arreglo "perdedores" si Participante "a"
 					gana a g[i]
 				*/
 				perdedores[iPer] = g[i];
 				iPer++;
-			} else if (a.indiceDeVictorias() == g[i].indiceDeVictorias()) {
+			} else if (indiceA == g[i].indiceDeVictorias()) {
 				/*
 					Criterio de desempate en caso de tener ambos Participantes el
 				   	mismo indice de victoria
 				*/
-				if (a.cinta.getNivelNumerico() > g[i].cinta.getNivelNumerico()) {
+				if (nvlNumericoCinta > g[i].cinta.getNivelNumerico()) {
 					/*
 						Agregando elemento al arreglo "Perdedores" si Participante
 						"a" tiene cinta de mayor rango que g[i]
