@@ -247,7 +247,7 @@ public class AdivinadorResultados {
 
 		// Ciclo para saber que tamanio tendra nuestro nuevo arreglo
 		for (int i = 0; i < g.length; i++) {
-			if (g[i].indiceDeVictorias() >= indiceA - 10 && g[i].indiceDeVictorias() <= indiceA + 10) {
+			if (g[i].indiceDeVictorias() >= indiceA - 0.10 && g[i].indiceDeVictorias() <= indiceA + 0.10) {
 				numTotal++;
 			}
 		}
@@ -257,10 +257,14 @@ public class AdivinadorResultados {
 		/** creando el arreglo con el tamanio correspondiente */
 		Participante[] similar = new Participante[tamanioNuevoArreglo];
 
+		/* Variable auxiliar que representa indice en arreglo mismas */
+		int iMism = 0;
+
 		/** llenando el arreglo tal que cumpla la condicion requerida */
 		for (int i = 0; i < g.length; i++) {
-			if (g[i].indiceDeVictorias() >= indiceA - 10 && g[i].indiceDeVictorias() <= indiceA + 10) {
-				similar[i] = g[i];
+			if (g[i].indiceDeVictorias() >= indiceA - 0.10 && g[i].indiceDeVictorias() <= indiceA + 0.10) {
+				similar[iMism] = g[i];
+				iMism++;
 			}
 		}
 
