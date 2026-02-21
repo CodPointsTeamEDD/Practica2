@@ -296,6 +296,9 @@ public class AdivinadorResultados {
 		/* Obteniendo el elemento buscado */
 		String elemento = subCadena.substring(0, indiceSeparador);			
 
+		/* Eliminando posibles espacios extra */
+		elemento = elemento.trim();
+
 		/* Retornando el elemento */
 		return elemento;
 	}
@@ -360,7 +363,7 @@ public class AdivinadorResultados {
 
 		/* Variables que almacenarán participantes */
 		Participante[] g = new Participante[numPart-1]; 
-		Participante a = new Participante("", 0, 0, new Cinta("Kaimua", Cinta.getNivelNumerico("Kaimua")));
+		Participante a = new Participante("", 0, 0, new Cinta(Cinta.NOMBRES_CINTAS[0]));
 
 		/* Variables temporales que se pasarán al constructor de Participante*/
 		String nombreParticipante;
@@ -383,7 +386,7 @@ public class AdivinadorResultados {
 				numMedallas = AdivinadorResultados.extraerNumMedallas(linea); 
 				numTorneos = AdivinadorResultados.extraerParticipaciones(linea); 
 				nombreCinta = AdivinadorResultados.extraerNombreCinta(linea); 
-				cinta = new Cinta(nombreCinta, Cinta.getNivelNumerico(nombreCinta));
+				cinta = new Cinta(nombreCinta);				
 
 				/* 
 					Creando el jugador "a" o insertando jugadores en arreglo de tipo 
@@ -465,6 +468,4 @@ public class AdivinadorResultados {
 		}
 
 	}
-
-
 }

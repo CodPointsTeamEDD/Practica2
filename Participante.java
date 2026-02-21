@@ -83,6 +83,7 @@ public class Participante{
 		cadena = cadena + "NumMedallas: " + getNumMedallas() + ", ";
 		cadena = cadena + "Num torneos: " + getNumTorneos() + ", ";
 		cadena = cadena + "Cinta: " + getCinta().getNombre();
+		cadena = cadena + "Nivel numerico: " + getCinta().getNivelNumerico();
 
 		return cadena;
 	}

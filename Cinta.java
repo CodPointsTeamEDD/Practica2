@@ -18,16 +18,20 @@ public class Cinta {
 
 	/** CONSTANTES */
 	public static String[] NOMBRES_CINTAS = {"Kaimua", "Moli", "Lua", "Moana", "Ulakui"};
-	public static int[] NIVELES_NUMERICOS = {1, 2, 3, 4, 5};
 
 	/**
 	 * Constructor de la clase {@code Cinta}
 	 * 
 	 * @param nombre nombre de la cinta
 	 */
-	public Cinta(String nombre, int nivelNumerico) {
-		this.nombre = nombre;
-		this.nivelNumerico = nivelNumerico;
+	public Cinta(String nombre) throws IllegalArgumentException{
+		if (nombreEnLista(nombre) != -1) {
+			this.nombre = nombre;
+			this.nivelNumerico = nombreEnLista(nombre);
+		} else {
+			System.out.println("Quemierdaimprimio? " + nombreEnLista(nombre));
+			throw new IllegalArgumentException();
+		}
 	}
 
 	/** Getters */
@@ -55,7 +59,6 @@ public class Cinta {
 	 */
 	public static int getNivelNumerico(String nombreCinta) {
 		int indiceNombre = 0;
-		int nivelNumerico;
 
 		/* Obteniendo el indice del nombre*/
 		for (int i = 0; i < Cinta.NOMBRES_CINTAS.length; i++) {
@@ -66,10 +69,32 @@ public class Cinta {
 			}
 		}
 
-		/* Obteniendo el nivel correspondiente */
-		nivelNumerico = Cinta.NIVELES_NUMERICOS[indiceNombre - 1];
+		return indiceNombre;
+	}
 
-		return nivelNumerico;
+	/**
+	 * Metodo que verific si el un string pertenece a la constante NOMBRES_CINTA
+	 * @param nombreDeLaCinta
+	 * @return Nivel de la cinta
+	 */
+	public static int nombreEnLista(String nombreCinta) {
+		int indice=0;
+
+		/* Obteniendo el indice del nombre*/
+		for (int i = 0; i < Cinta.NOMBRES_CINTAS.length; i++) {
+			if (nombreCinta.trim().equals(NOMBRES_CINTAS[i]) ) {
+				break;
+			} else {
+				indice++;
+			}
+		}
+
+		/* Verificando si el elemento estuvo en la lista */
+		if (indice==Cinta.NOMBRES_CINTAS.length) {
+			return -1;
+		}
+
+		return indice;
 	}
 
 	/** Setters */
