@@ -29,7 +29,6 @@ public class Cinta {
 			this.nombre = nombre;
 			this.nivelNumerico = nombreEnLista(nombre);
 		} else {
-			System.out.println("Quemierdaimprimio? " + nombreEnLista(nombre));
 			throw new IllegalArgumentException();
 		}
 	}

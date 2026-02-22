@@ -271,7 +271,16 @@ public class AdivinadorResultados {
 		return similar;
 	}
 
-
+	/** 
+	 * Metodo que dada una cadena, la divide en fragmentos o subcadenas delimitadas por un 
+	 * caracter "separador". 
+	 * 
+	 * @param cadena cadena original a separar
+	 * @param separador Char que representa el elemento separador
+	 * @param posicionElemento fragmento especifico que se desea recuperar
+	 * @return String que representa un fragmento de la cadena original obtenido a partir de
+	 * 
+	*/
 	public static String extraerSubcadena(String cadena, char separador, int posicionElemento){
 		/* Inicializando variables */
 		String subCadena = cadena;
@@ -307,9 +316,21 @@ public class AdivinadorResultados {
 		return elemento;
 	}
 
+	/** 
+	 * Metodo que dada una cadena con información de un Participante
+	 * extrae su nombre
+	 * @param cadena cadena que contiene la información del participante
+	 * @return String con el nombre del participante
+	*/
 	public static String extraerNombre(String cadena){
 		return AdivinadorResultados.extraerSubcadena(cadena, ',', 0);
 	}
+	/** 
+	 * Metodo que dada una cadena con información de un Participante
+	 * extrae el numero de medallas que posee
+	 * @param cadena cadena que contiene la información del participante
+	 * @return INT con el numero de medallas del participante
+	*/
 	public static int extraerNumMedallas(String cadena){
 		int numMedallas;
 		String subcadena = AdivinadorResultados.extraerSubcadena(cadena, ',', 1);
@@ -322,6 +343,12 @@ public class AdivinadorResultados {
 
 		return numMedallas;
 	}
+	/** 
+	 * Metodo que dada una cadena con información de un Participante
+	 * extrae el numero de participaciones en torneos
+	 * @param cadena cadena que contiene la información del participante
+	 * @return INT con el numero de participaciones
+	*/
 	public static int extraerParticipaciones(String cadena){
 		int numPart;
 		String subcadena = AdivinadorResultados.extraerSubcadena(cadena, ',', 2);
@@ -334,6 +361,12 @@ public class AdivinadorResultados {
 
 		return numPart;
 	}
+	/** 
+	 * Metodo que dada una cadena con información de un Participante
+	 * extrae el nombre de la cinta que poseen
+	 * @param cadena cadena que contiene la información del participante
+	 * @return String con el nombre de la cinta del participante
+	*/
 	public static String extraerNombreCinta(String cadena){
 		String subcadena = AdivinadorResultados.extraerSubcadena(cadena, ',', 3);
 
@@ -342,7 +375,6 @@ public class AdivinadorResultados {
 
 		return subcadena;
 	}
-
 
 	public static void main(String[] args) {
 		/* ----------------------------------------------------- */
