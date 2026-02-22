@@ -77,6 +77,7 @@ public class Participante{
 		return this.cinta;
 	}
 
+	@Override
 	public String toString(){
 		String cadena = "";
 		cadena = cadena + "Nombre: " + getNombre() + ", ";
