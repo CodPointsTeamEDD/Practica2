@@ -110,13 +110,5 @@ public class Cinta {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	/**
-	 * Metodo que asigna el nivel numerico de la cinta
-	 * 
-	 * @param nombre nivel a asignar
-	 */
-	public void setNivelNumerico(int nivel) {
-		this.nivelNumerico = nivel;
-	}
 
 }
