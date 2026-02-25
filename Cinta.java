@@ -59,16 +59,20 @@ public class Cinta {
 	public static int getNivelNumerico(String nombreCinta) {
 		int indiceNombre = 0;
 
-		/* Obteniendo el indice del nombre*/
-		for (int i = 0; i < Cinta.NOMBRES_CINTAS.length; i++) {
-			if (!nombreCinta.equals(NOMBRES_CINTAS[i]) || !nombreCinta.equals(NOMBRES_CINTAS[i] + " ") ) {
-				indiceNombre++;
-			} else{
-				break;
+		/* Verificando que el nombre esté en la lista */
+		if(nombreEnLista(nombreCinta) != -1){
+			/* Obteniendo el indice del nombre*/
+			for (int i = 0; i < Cinta.NOMBRES_CINTAS.length; i++) {
+				if (!nombreCinta.equals(NOMBRES_CINTAS[i]) || !nombreCinta.equals(NOMBRES_CINTAS[i] + " ") ) {
+					indiceNombre++;
+				} else{
+					break;
+				}
 			}
+			return indiceNombre;
+		} else{
+			return -1;
 		}
-
-		return indiceNombre;
 	}
 
 	/**
