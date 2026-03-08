@@ -376,6 +376,10 @@ public class AdivinadorResultados {
 		return subcadena;
 	}
 
+	/** 
+	 * Metodo Main que prueba todos lo métodos definidos previamente
+	 * @param args argumentos recibidos en terminal
+	*/
 	public static void main(String[] args) {
 		/* ----------------------------------------------------- */
 		/*     Lectura de archivo y extracción de información    */
